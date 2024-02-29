@@ -14,33 +14,45 @@
 
 void	take_map(t_map map_struct, char **argv)
 {
-	int fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd(MAP_FD, 2);
-		exit(1);
-	}
-	parse_map(map_struct, fd);
+	parse_map(map_struct, argv[1]);
 }
 
-void	parse_map(t_map map_struct, int fd)
+void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 {
-	char	*temp;
-	char	*map_string;
-	char	*temp_ptr;
+	size_t	i;
+	int		fd;
 
-	map_string = "";
-	map_struct.temp_map = NULL;
-	temp = get_next_line(fd);
-	while (temp != NULL)
+	map_struct.height = count_lines(open(fname, O_RDONLY)); 
+	map_struct.map = ft_calloc(map_struct.height + 1, sizeof(char *));
+	if (!map_struct.map)
+		exit(1);
+	i = 0;
+	fd = open(fname, O_RDONLY);
+	if (fd < 0)
+		exit(1);
+	while (i < map_struct.height)
+		map_struct.map[i++] = get_next_line(fd);
+	i = 0;
+	// while (map_struct.map[i])
+	// 	ft_printf("%s", map_struct.map[i++]); // this is just for checking the map
+	// free_array(map_struct.map);
+}
+
+size_t	count_lines(int fd)
+{
+	size_t	i;
+	char	*line;
+
+	if (fd < 0)
+		return (0);
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		temp_ptr = ft_strjoin(map_string, temp);
-		map_string = temp_ptr;
-		free(temp);
-		temp = get_next_line(fd);
+		i++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	ft_printf("%s\n", map_string);
-	free(map_string);
+	close(fd);
+	return (i);
 }

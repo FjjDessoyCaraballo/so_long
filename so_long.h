@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 /* libft */
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 /* permitted libraries */
 /* for close, read, write, unlink, dup, dup2, execve, fork, pipe, access */
@@ -40,8 +40,9 @@
 /* map struct */
 typedef struct s_map
 {
-	// char **map;
-	char *temp_map;
+	char	**map;
+	size_t	height;
+	size_t	width;
 }				t_map;
 
 /* so_long.c */
@@ -52,10 +53,9 @@ void	invalid_arg(int argc, char **argv);
 
 /* map_handling.c */
 void	take_map(t_map map_struct, char **argv);
-void	parse_map(t_map map_struct, int fd);
+void	parse_map(t_map map_struct, char *fname);
+size_t	count_lines(int fd);
 
-/* utils.c */
-void	free_array(char **array);
 
 #endif
 
