@@ -66,7 +66,7 @@ int	check_characters(char *line)
 	while (*line)
 	{
 		if (*line != '0' && *line != '1' && *line != 'P'
-			&& *line != 'E' && *line != 'C');
+			&& *line != 'E' && *line != 'C')
 			return (0);
 		line++;
 	}
