@@ -41,6 +41,7 @@
 typedef struct s_map
 {
 	char	**map;
+	char	*map_1d;
 	size_t	height;
 	size_t	width;
 }				t_map;
@@ -54,8 +55,9 @@ void	invalid_arg(int argc, char **argv);
 /* map_handling.c */
 void	take_map(t_map map_struct, char **argv);
 void	parse_map(t_map map_struct, char *fname);
-size_t	count_lines(int fd);
-int		check_characters(char *line);
+size_t	count_lines(t_map map_struct, int fd);
+
+/* check_map.c */
 
 #endif
 

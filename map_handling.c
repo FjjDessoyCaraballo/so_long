@@ -22,7 +22,7 @@ void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 	size_t	i;
 	int		fd;
 
-	map_struct.height = count_lines(open(fname, O_RDONLY)); 
+	map_struct.height = count_lines(map_struct, open(fname, O_RDONLY)); 
 	map_struct.map = ft_calloc(map_struct.height + 1, sizeof(char *));
 	if (!map_struct.map)
 		exit(1);
@@ -32,14 +32,13 @@ void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 		exit(1);
 	while (i < map_struct.height)
 		map_struct.map[i++] = get_next_line(fd);
-
 	// i = 0;
 	// while (map_struct.map[i])
 	// 	ft_printf("%s", map_struct.map[i++]); // this is just for checking the map
 	// free_array(map_struct.map);
 }
 
-size_t	count_lines(int fd)
+size_t	count_lines(t_map map_struct, int fd)
 {
 	size_t	i;
 	char	*line;
@@ -48,12 +47,10 @@ size_t	count_lines(int fd)
 		return (0);
 	i = 0;
 	line = get_next_line(fd);
-	if (!check_characters(line))
-		return (0);
+	map_struct.width = ft_strlen(line);
 	while (line)
 	{
 		i++;
-		
 		free(line);
 		line = get_next_line(fd);
 	}
