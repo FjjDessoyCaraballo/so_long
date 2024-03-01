@@ -32,10 +32,16 @@ void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 		exit(1);
 	while (i < map_struct.height)
 		map_struct.map[i++] = get_next_line(fd);
-	// i = 0;
-	// while (map_struct.map[i])
-	// 	ft_printf("%s", map_struct.map[i++]); // this is just for checking the map
-	// free_array(map_struct.map);
+	validate_map(map_struct);
+	i = 0;
+	while (map_struct.map[i])
+		ft_printf("%s", map_struct.map[i++]); // this is just for checking the map
+	free_array(map_struct.map);
+}
+
+void	validate_map(t_map map_struct)
+{
+	check_rectangle(map_struct);
 }
 
 size_t	count_lines(t_map map_struct, int fd)
@@ -58,14 +64,3 @@ size_t	count_lines(t_map map_struct, int fd)
 	return (i);
 }
 
-int	check_characters(char *line)
-{
-	while (*line)
-	{
-		if (*line != '0' && *line != '1' && *line != 'P'
-			&& *line != 'E' && *line != 'C')
-			return (0);
-		line++;
-	}
-	return (1);
-}

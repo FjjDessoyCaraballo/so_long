@@ -56,8 +56,10 @@ void	invalid_arg(int argc, char **argv);
 void	take_map(t_map map_struct, char **argv);
 void	parse_map(t_map map_struct, char *fname);
 size_t	count_lines(t_map map_struct, int fd);
+void	validate_map(t_map map_struct);
 
 /* check_map.c */
+void	check_rectangle(t_map map_struct);
 
 #endif
 
