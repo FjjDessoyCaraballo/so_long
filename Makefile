@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 INCFLAGS = -Iincludes
 
 # Main project files
-SRC_FILES = so_long.c arg_input.c map_handling.c main.c check_map.c
+SRC_FILES = so_long.c arg_input.c map_handling.c main.c map_validation.c\
+utils.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 EXECUTABLE = so_long
 

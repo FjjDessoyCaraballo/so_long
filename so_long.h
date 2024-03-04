@@ -29,9 +29,10 @@
 // # include "MLX42/MLX42.h" // not ready yet
 
 /* error macros */
-# define ERR_ARG "Invalid number of arguments"
-# define ERR_FILE "No valid .ber file inserted"
-# define MAP_FD "Error reading the map"
+# define ERR_ARG "Error: invalid number of arguments"
+# define ERR_FILE "Error: no valid .ber file inserted"
+# define MAP_FD "Error: failed to read the map"
+# define ERR_MAP "Error: Invalid map"
 
 /* game record macros */
 // # define heigh
@@ -41,7 +42,6 @@
 typedef struct s_map
 {
 	char	**map;
-	char	*map_1d;
 	size_t	height;
 	size_t	width;
 }				t_map;
@@ -53,13 +53,16 @@ void	so_long(t_map map_struct, char **argv);
 void	invalid_arg(int argc, char **argv);
 
 /* map_handling.c */
-void	take_map(t_map map_struct, char **argv);
 void	parse_map(t_map map_struct, char *fname);
-size_t	count_lines(t_map map_struct, int fd);
+size_t	count_lines(int fd);
 void	validate_map(t_map map_struct);
 
-/* check_map.c */
+/* map_validation.c */
 void	check_rectangle(t_map map_struct);
+
+/* utils.c */
+size_t	ft_strlen_mod(const char *s);
+void	remove_nl(t_map map_struct);
 
 #endif
 
