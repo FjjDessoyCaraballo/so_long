@@ -32,7 +32,9 @@
 # define ERR_ARG "Error: invalid number of arguments"
 # define ERR_FILE "Error: no valid .ber file inserted"
 # define MAP_FD "Error: failed to read the map"
-# define ERR_MAP "Error: Invalid map"
+# define ERR_MAP "Error: invalid map size"
+# define ERR_CHAR "Error: invalid map content"
+# define ERR_WALL "Error: map must be closed by walls"
 
 /* game record macros */
 // # define heigh
@@ -47,24 +49,29 @@ typedef struct s_map
 }				t_map;
 
 /* so_long.c */
-void	so_long(t_map map_struct, char **argv);
+void	so_long(t_map msl, char **argv);
 
 /* arg_input.c */
 void	invalid_arg(int argc, char **argv);
 
 /* map_handling.c */
-void	parse_map(t_map map_struct, char *fname);
+void	parse_map(t_map msl, char *fname);
 size_t	count_lines(int fd);
-void	validate_map(t_map map_struct);
+void	validate_map(t_map msl);
 
 /* map_validation.c */
-void	check_rectangle(t_map map_struct);
+void	check_rectangle(t_map msl);
+void	check_character(char **map);
+void	check_walls(t_map msl);
+
+/* walls.c */
+void	check_upper_wall(t_map msl);
+void	check_lower_wall(t_map msl);
+void	check_left_wall(t_map msl);
+void	check_right_wall(t_map msl);
 
 /* utils.c */
 size_t	ft_strlen_mod(const char *s);
-void	remove_nl(t_map map_struct);
+void	remove_nl(t_map msl);
 
 #endif
-
-
-

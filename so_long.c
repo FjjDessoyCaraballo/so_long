@@ -12,8 +12,7 @@
 
 #include "so_long.h"
 
-void	so_long(t_map map_struct, char **argv)
+void	so_long(t_map msl, char **argv)
 {
-	parse_map(map_struct, argv[1]);
+	parse_map(msl, argv[1]);
 }
-

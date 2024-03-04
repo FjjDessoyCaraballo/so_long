@@ -12,14 +12,14 @@
 
 #include "so_long.h"
 
-void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
+void	parse_map(t_map msl, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 {
 	size_t	i;
 	int		fd;
 
-	map_struct.height = count_lines(open(fname, O_RDONLY)); 
-	map_struct.map = ft_calloc(map_struct.height + 1, sizeof(char *));
-	if (!map_struct.map)
+	msl.height = count_lines(open(fname, O_RDONLY));
+	msl.map = ft_calloc(msl.height + 1, sizeof(char *));
+	if (!msl.map)
 		exit(1);
 	i = 0;
 	fd = open(fname, O_RDONLY);
@@ -28,22 +28,25 @@ void	parse_map(t_map map_struct, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 		ft_putstr_fd(MAP_FD, 2);
 		exit(1);
 	}
-	while (i < map_struct.height)
-		map_struct.map[i++] = get_next_line(fd);
-	remove_nl(map_struct);
-	map_struct.width = ft_strlen(map_struct.map[0]);
-	validate_map(map_struct);
-
-	i = 0;
-	while (map_struct.map[i])
-		ft_printf("%s", map_struct.map[i++]); // this is for testing
-	free_array(map_struct.map);
+	while (i < msl.height)
+		msl.map[i++] = get_next_line(fd);
+	remove_nl(msl);
+	msl.width = ft_strlen(msl.map[0]);
+	validate_map(msl);
+	ft_printf("These infos show if map is validated\n");
+	ft_printf("height: %i\n", msl.height);
+	ft_printf("width: %i\n", msl.width);
 }
+	// i = 0;
+	// while (msl.map[i])
+	// 	ft_printf("%s", msl.map[i++]); // this is for testing
+	// free_array(msl.map);
 
-void	validate_map(t_map map_struct)
+void	validate_map(t_map msl)
 {
-	check_rectangle(map_struct);
-	// check_characters(map_struct);
+	check_rectangle(msl);
+	check_character(msl.map);
+	check_walls(msl);
 }
 
 size_t	count_lines(int fd)
@@ -64,6 +67,3 @@ size_t	count_lines(int fd)
 	close(fd);
 	return (i);
 }
-
-
-
