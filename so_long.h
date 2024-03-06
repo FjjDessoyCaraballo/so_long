@@ -46,6 +46,7 @@ typedef struct s_map
 	char	**map;
 	size_t	height;
 	size_t	width;
+	size_t	collect;
 }				t_map;
 
 /* so_long.c */
@@ -56,13 +57,13 @@ void	invalid_arg(int argc, char **argv);
 
 /* map_handling.c */
 void	parse_map(t_map msl, char *fname);
-size_t	count_lines(int fd);
 void	validate_map(t_map msl);
 
 /* map_validation.c */
 void	check_rectangle(t_map msl);
 void	check_character(char **map);
 void	check_walls(t_map msl);
+void	check_content(t_map msl);
 
 /* walls.c */
 void	check_upper_wall(t_map msl);
@@ -73,5 +74,9 @@ void	check_right_wall(t_map msl);
 /* utils.c */
 size_t	ft_strlen_mod(const char *s);
 void	remove_nl(t_map msl);
+size_t	count_lines(int fd);
+
+/* contents.c */
+size_t	count_collect(t_map msl);
 
 #endif

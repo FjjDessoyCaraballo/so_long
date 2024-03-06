@@ -33,37 +33,18 @@ void	parse_map(t_map msl, char *fname) // NEEDS MORE EXCEPTIONS PARSING
 	remove_nl(msl);
 	msl.width = ft_strlen(msl.map[0]);
 	validate_map(msl);
-	ft_printf("These infos show if map is validated\n");
-	ft_printf("height: %i\n", msl.height);
-	ft_printf("width: %i\n", msl.width);
+	msl.collect = count_collect(msl);
 }
-	// i = 0;
-	// while (msl.map[i])
-	// 	ft_printf("%s", msl.map[i++]); // this is for testing
-	// free_array(msl.map);
+	// ft_printf("\nThese infos show if map is validated\n");
+	// ft_printf("height: %i\n", msl.height);
+	// ft_printf("width: %i\n", msl.width);
+	// ft_printf("collectibles: %i\n", msl.collect);
+
 
 void	validate_map(t_map msl)
 {
 	check_rectangle(msl);
 	check_character(msl.map);
 	check_walls(msl);
-}
-
-size_t	count_lines(int fd)
-{
-	size_t	i;
-	char	*line;
-
-	if (fd < 0)
-		return (0);
-	i = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		i++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (i);
+	check_content(msl);
 }

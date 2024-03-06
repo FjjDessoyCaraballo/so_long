@@ -7,7 +7,7 @@ INCFLAGS = -Iincludes
 
 # Main project files
 SRC_FILES = so_long.c arg_input.c map_handling.c main.c map_validation.c\
-utils.c walls.c
+utils.c walls.c collectibles.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 EXECUTABLE = so_long
 
