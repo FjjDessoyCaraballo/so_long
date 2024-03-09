@@ -75,7 +75,7 @@ to reach.
 
 07.03.2024
 1 - Added a function check_fill_exit() to check if there is
-still an exit after flooding the map.
+still an exit after flooding the map.\n
 2 - Added function copy_map() to make a backup copy of the map
 before proceeding to fill the map. The backup is neccessary
 because after the flood fill algorithm the map will be ripped
