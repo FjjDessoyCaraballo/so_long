@@ -1,7 +1,7 @@
 # so_long
 
 ## Check list
-1. check if is a rectangle (I have width and height in the struct); DONE
+1. check if is a rectangle - DONE
 2. remove new lines - DONE 
 3. check if there are no invalid characters - DONE
 4. check if the floor is all 0's - UNNECESSARY!
