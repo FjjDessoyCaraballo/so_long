@@ -16,7 +16,8 @@
 14. choose sprites 
 15. create a function that opens a window
 16. shove sprites inside the window
-17. check for only .ber files
+17. check for only .ber files - DONE
+18. check for directories named .ber - DONE
 
 01.03.2024 
 1 - Map is coming back in irregular size (not rectangular). 
@@ -85,3 +86,8 @@ behavior was corrected by using ft_strdup() and now we can
 flood the duplicate without affecting the original map.
 4 - copy_map() was leaking due to a lack of space for the
 null terminator in the first malloc().
+
+09.03.2024
+Added is_dir() to arg_input.c to check for when the 
+given file is a directory. Together with this, a specific
+error message is given to this specific error.
