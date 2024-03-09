@@ -20,7 +20,7 @@
 18. check for directories named .ber - DONE
 
 01.03.2024 
-1 - Map is coming back in irregular size (not rectangular). 
+\n1 - Map is coming back in irregular size (not rectangular). 
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
 Probably because ft_strlen is not counting the null 
