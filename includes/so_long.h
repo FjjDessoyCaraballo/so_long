@@ -57,6 +57,7 @@ void	so_long(t_map *msl, char **argv);
 
 /* arg_input.c */
 void	invalid_arg(int argc, char **argv);
+void	is_dir(char *dir);
 
 /* map_handling.c */
 void	parse_map(t_map *msl, char *fname);
