@@ -1,7 +1,17 @@
-# so_long
+#########################################################
+###################### ACRONYMS #########################
+#########################################################
 
-## Check list
-1. check if is a rectangle - DONE
+In case you have no idea what those letters mean:
+1. msl - map so_long;
+2. mlx - MiniLibraryX;
+3. isl - images so_long;
+
+#########################################################
+##################### CHECK LIST ########################
+#########################################################
+
+1. check if is a rectangle (I have width and height in the struct); DONE
 2. remove new lines - DONE 
 3. check if there are no invalid characters - DONE
 4. check if the floor is all 0's - UNNECESSARY!
@@ -17,24 +27,50 @@
 14. choose sprites 
 15. create a function that opens a window
 16. shove sprites inside the window
-17. check for only .ber files - DONE
-18. check for directories named .ber - DONE
+17. check for only .ber files
 
-## 01.03.2024 
+OBS: VS code terminal fucks up output, dont trust it always.
+
+#########################################################
+######################## MLX ############################
+#########################################################
+
+What is the MLX?
+The MiniLibX, or MLX, is a framework built by Olivier Crouzet on top of X11, a window system developed back in 1984! The MLX is a beginner-friendly C API to interact with the X11 system behind it. Let's look at some of the functions you might be using.
+
+1. mlx_init: Initialises the MLX library. Must be called before using any other functions.
+2. mlx_new_window: Creates a new window instance.
+3. mlx_hook: Registers events.
+4. mlx_loop: Loops over the MLX pointer, triggering each hook in order of registration.
+5. mlx_xpm_file_to_image: Converts an XPM file to an MLX image pointer.
+6. mlx_put_image_to_window: Puts your image to the screen at the given coordinates.
+7. mlx_destroy_image: Frees the image.
+8. mlx_destroy_window: Frees the window instance.
+9. mlx_destroy_display: Frees MLX.
+We will be looking into each function in more detail later, 
+but if you want more information about these functions, I 
+recommend visiting 42Docs, as they have done a great job 
+documenting the MLX (linked in additional resources).
+
+#########################################################
+##################### JOURNAL ###########################
+#########################################################
+
+01.03.2024 
 1. Map is coming back in irregular size (not rectangular). 
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
 Probably because ft_strlen is not counting the null 
 at the end.)
 
-## 04.03.2024 
+04.03.2024 
 1. Modded ft_strlen to count until new line. Now the 
 struct has the true value of the width for any possible 
 scenario. Modded strlen is in utils.c.
 2. In remove_nl() I will insert a new variable in the 
 struct that will take the parsed map, while leaving the
 original map unnafected. As the name says, this function 
-will take out the newlines.
+will take out the newlines. 
 3. New map has been inserted to the struct. Now the array 
 has just null terminated strings in it. Next step is to 
 check if the map is a rectangle.
@@ -46,18 +82,18 @@ own error message.
 END OF DAY: next step is to check for at least one occurrence
 of P, E, and C.
 
-## 05.03.2024
+05.03.2024
 1. Added check_components to check existence of necessary
 elements in the game - i.e. one player and exit, and at least
 one collectible.
-2. map_validation now has check_content() that checks for
+2. Map_validation now has check_content() that checks for
 existence of ONE occurrence of exit and player.
 3. Added a collectibles.c with count_collect() to have the
 number of collectibles into my msl struct for further use.
 The function only allow the map to have at least ONE
 collectible. 
 
-## 06.03.2024
+06.03.2024
 1. Added variables size_t x and y_ppos (player position) to
 precisely know where the player will be. This information
 allows us to have a starting point for the flood_fill later.
@@ -74,21 +110,40 @@ still there, it means that the flood fill has not covered
 the area where the exit is, therefore making it impossible
 to reach.
 
-## 07.03.2024
+07.03.2024
 1. Added a function check_fill_exit() to check if there is
 still an exit after flooding the map.
 2. Added function copy_map() to make a backup copy of the map
 before proceeding to fill the map. The backup is neccessary
 because after the flood fill algorithm the map will be ripped
 of the positions of the player, collectibles, and etc.
-3. copy_map() was using ft_memcpy() and it was somehow
+3. Copy_map() was using ft_memcpy() and it was somehow
 copying after the flood_fill, which was after the copy. The
 behavior was corrected by using ft_strdup() and now we can
 flood the duplicate without affecting the original map.
-4. copy_map() was leaking due to a lack of space for the
+4. Copy_map() was leaking due to a lack of space for the
 null terminator in the first malloc().
 
-## 09.03.2024
-1. Added is_dir() to arg_input.c to check for when the 
-given file is a directory. Together with this, a specific
-error message is given to this specific error.
+09.03.2024
+1. Added is_dir() to arg_input.c to check for when the given 
+file is a directory. Together with this, a specific error message 
+is given to this specific error.
+
+11.03.2024
+1. MLX42 is working with the Makefile.
+2. Inserted mlx functions mlx_init() to open window, and mlx_loop()
+to keep window open.
+3. Added texture_loading function to so_long.c, which leads to 
+draw_map.c where textures will be turned into images unto the
+window.
+
+12.03.2024
+1. Texture_loading() has been reassigned to img_init() in the same
+file. There is a need to initialize and determine some variables
+before loading sprites/images.
+2. Added resize_image() and tile_size() to determine tile size and
+resize images accordingly.
+3. Tile_size() has been moved up to so_long() for mlx_init() to size
+the window to the proper background size.
+4. BE CAREFUL: mlx_close_window() can unnecessarily free stuff. Use
+it as the last possible thing after all the code.

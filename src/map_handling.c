@@ -37,10 +37,6 @@ void	parse_map(t_map *msl, char *fname)
 	map_cpy = copy_map(msl->map, msl->height, msl->width);
 	validate_map(msl, map_cpy);
 	free_array(map_cpy);
-	for (size_t i = 0; i < msl->height; i++) {
-        printf("%s\n", msl->map[i]);
-	}
-	free_array(msl->map);
 }
 
 void	validate_map(t_map *msl, char **map_cpy)

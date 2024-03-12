@@ -24,14 +24,14 @@ void	invalid_arg(int argc, char **argv)
 		ft_putstr_fd(ERR_FILE, 2);
 		exit(1);
 	}
-	is_dir(arg[1]);
+	is_dir(argv[1]);
 }
 
 void	is_dir(char *dir)
 {
 	int fd;
 	
-	fd = open(dir, __O_DIRECTORY);
+	fd = open(dir, O_DIRECTORY);
 	if (fd >= 0)
 	{
 		ft_putstr_fd(ERR_DIR, 2);

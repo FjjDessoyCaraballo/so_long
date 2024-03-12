@@ -13,33 +13,54 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+/* MLX42 */
+# include "./MLX42/MLX42.h"
 /* libft */
 # include "libft.h"
 
 /* permitted libraries */
 /* for close, read, write, unlink, dup, dup2, execve, fork, pipe, access */
 # include <unistd.h>
+
 /* for open, */
 # include <fcntl.h>
+
 /* for malloc, free, exit */
 # include <stdlib.h>
+
 /* for perror */
 # include <stdio.h>
-// /* MLX42 */
-// # include "MLX42/MLX42.h" // not ready yet
 
 /* error macros */
-# define ERR_ARG "Error: invalid number of arguments\n"
-# define ERR_FILE "Error: no valid .ber file inserted\n"
-# define MAP_FD "Error: failed to read the map\n"
-# define ERR_MAP "Error: invalid map size\n"
-# define ERR_CHAR "Error: invalid map content\n"
-# define ERR_WALL "Error: map must be closed by walls\n"
-# define ERR_PATH "Error: player does not have a valid path\n"
+# define ERR_ARG "Error\nInvalid number of arguments\n"
+# define ERR_DIR "Error\n"
+# define ERR_FILE "Error\nNo valid .ber file inserted\n"
+# define MAP_FD "Error\nFailed to read the map\n"
+# define ERR_MAP "Error\nInvalid map size\n"
+# define ERR_CHAR "Error\nInvalid map content\n"
+# define ERR_WALL "Erro\nMap must be closed by walls\n"
+# define ERR_PATH "Error\nPlayer does not have a valid path\n"
 
-/* game record macros */
-// # define heigh
-// # define width
+/* window size */
+# define WINDOW_W 1366
+# define WINDOW_H 768
+
+/* textures and images struct */
+typedef struct s_img
+{
+	mlx_texture_t	*txt_0;
+	mlx_texture_t	*txt_1;
+	mlx_texture_t	*txt_c;
+	mlx_texture_t	*txt_p;
+	mlx_texture_t	*txt_e;
+	mlx_texture_t	*txt_bg;
+	mlx_image_t		*img_0;
+	mlx_image_t		*img_1;
+	mlx_image_t		*img_c;
+	mlx_image_t		*img_p;
+	mlx_image_t		*img_e;
+	mlx_image_t		*img_bg;
+}				t_img;
 
 /* map struct */
 typedef struct s_map
@@ -50,10 +71,18 @@ typedef struct s_map
 	size_t	collect;
 	size_t	x_ppos;
 	size_t	y_ppos;
+	size_t	tile_w;
+	size_t	tile_h;
+	size_t	tile_sq;
+	size_t	moves;
+	size_t	x;
+	size_t	y;
+	mlx_t	*mlx;
+	t_img	*img;
 }				t_map;
 
 /* so_long.c */
-void	so_long(t_map *msl, char **argv);
+void	so_long(t_map *msl, char **argv, mlx_t *mlx, t_img *isl);
 
 /* arg_input.c */
 void	invalid_arg(int argc, char **argv);
@@ -88,5 +117,12 @@ size_t	count_collect(t_map *msl);
 /* flood_fill.c */
 void	flood_fill(char **map, size_t y, size_t x);
 void	check_fill_exit(t_map *msl, char **map_cpy);
+
+/* draw_map.c */
+void	img_init(t_map *msl, mlx_t *mlx, t_img *isl);
+void	texture_loading(mlx_t *mlx, t_img *isl);
+void	resize_image(t_map *msl, t_img *isl);
+void	tile_size(t_map *msl);
+void	map_allocation(t_map *msl, mlx_t *mlx);
 
 #endif
