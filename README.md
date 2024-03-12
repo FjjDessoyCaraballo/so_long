@@ -1,15 +1,11 @@
-#########################################################
-###################### ACRONYMS #########################
-#########################################################
+# ACRONYMS
 
 In case you have no idea what those letters mean:
 1. msl - map so_long;
 2. mlx - MiniLibraryX;
 3. isl - images so_long;
 
-#########################################################
-##################### CHECK LIST ########################
-#########################################################
+# CHECK LIST
 
 1. check if is a rectangle (I have width and height in the struct); DONE
 2. remove new lines - DONE 
@@ -31,9 +27,7 @@ In case you have no idea what those letters mean:
 
 OBS: VS code terminal fucks up output, dont trust it always.
 
-#########################################################
-######################## MLX ############################
-#########################################################
+# MLX
 
 What is the MLX?
 The MiniLibX, or MLX, is a framework built by Olivier Crouzet on top of X11, a window system developed back in 1984! The MLX is a beginner-friendly C API to interact with the X11 system behind it. Let's look at some of the functions you might be using.
@@ -52,18 +46,16 @@ but if you want more information about these functions, I
 recommend visiting 42Docs, as they have done a great job 
 documenting the MLX (linked in additional resources).
 
-#########################################################
-##################### JOURNAL ###########################
-#########################################################
+# JOURNAL
 
-01.03.2024 
+## 01.03.2024 
 1. Map is coming back in irregular size (not rectangular). 
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
 Probably because ft_strlen is not counting the null 
 at the end.)
 
-04.03.2024 
+## 04.03.2024 
 1. Modded ft_strlen to count until new line. Now the 
 struct has the true value of the width for any possible 
 scenario. Modded strlen is in utils.c.
@@ -82,7 +74,7 @@ own error message.
 END OF DAY: next step is to check for at least one occurrence
 of P, E, and C.
 
-05.03.2024
+## 05.03.2024
 1. Added check_components to check existence of necessary
 elements in the game - i.e. one player and exit, and at least
 one collectible.
@@ -93,7 +85,7 @@ number of collectibles into my msl struct for further use.
 The function only allow the map to have at least ONE
 collectible. 
 
-06.03.2024
+## 06.03.2024
 1. Added variables size_t x and y_ppos (player position) to
 precisely know where the player will be. This information
 allows us to have a starting point for the flood_fill later.
@@ -110,7 +102,7 @@ still there, it means that the flood fill has not covered
 the area where the exit is, therefore making it impossible
 to reach.
 
-07.03.2024
+## 07.03.2024
 1. Added a function check_fill_exit() to check if there is
 still an exit after flooding the map.
 2. Added function copy_map() to make a backup copy of the map
@@ -124,12 +116,12 @@ flood the duplicate without affecting the original map.
 4. Copy_map() was leaking due to a lack of space for the
 null terminator in the first malloc().
 
-09.03.2024
+## 09.03.2024
 1. Added is_dir() to arg_input.c to check for when the given 
 file is a directory. Together with this, a specific error message 
 is given to this specific error.
 
-11.03.2024
+## 11.03.2024
 1. MLX42 is working with the Makefile.
 2. Inserted mlx functions mlx_init() to open window, and mlx_loop()
 to keep window open.
@@ -137,7 +129,7 @@ to keep window open.
 draw_map.c where textures will be turned into images unto the
 window.
 
-12.03.2024
+## 12.03.2024
 1. Texture_loading() has been reassigned to img_init() in the same
 file. There is a need to initialize and determine some variables
 before loading sprites/images.
