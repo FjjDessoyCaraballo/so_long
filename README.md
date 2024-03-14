@@ -1,11 +1,11 @@
-# ACRONYMS
+## ACRONYMS
 
 In case you have no idea what those letters mean:
 1. msl - map so_long;
 2. mlx - MiniLibraryX;
 3. isl - images so_long;
 
-# CHECK LIST
+## CHECK LIST
 
 1. check if is a rectangle (I have width and height in the struct); DONE
 2. remove new lines - DONE 
@@ -27,7 +27,7 @@ In case you have no idea what those letters mean:
 
 OBS: VS code terminal fucks up output, dont trust it always.
 
-# MLX
+## MLX
 
 What is the MLX?
 The MiniLibX, or MLX, is a framework built by Olivier Crouzet on top of X11, a window system developed back in 1984! The MLX is a beginner-friendly C API to interact with the X11 system behind it. Let's look at some of the functions you might be using.
@@ -46,7 +46,7 @@ but if you want more information about these functions, I
 recommend visiting 42Docs, as they have done a great job 
 documenting the MLX (linked in additional resources).
 
-# JOURNAL
+## JOURNAL
 
 01.03.2024 
 1. Map is coming back in irregular size (not rectangular). 
