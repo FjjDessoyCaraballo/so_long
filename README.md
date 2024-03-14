@@ -51,12 +51,12 @@ documenting the MLX (linked in additional resources).
 
 ## JOURNAL
 
-01.03.2024 
+```01.03.2024 
 1. Map is coming back in irregular size (not rectangular). 
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
 Probably because ft_strlen is not counting the null 
-at the end.)
+at the end.)```
 
 04.03.2024 
 1. Modded ft_strlen to count until new line. Now the 
