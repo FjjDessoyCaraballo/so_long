@@ -77,18 +77,23 @@ typedef struct s_map
 	size_t	moves;
 	size_t	x;
 	size_t	y;
+	size_t	i;
+	size_t	j;
 	mlx_t	*mlx;
 	t_img	*img;
 }				t_map;
 
-/* so_long.c */
+/* key struct */
+void	keyf(mlx_key_data_t keydata, void *param);
+
+/* in so_long.c */
 void	so_long(t_map *msl, char **argv, mlx_t *mlx, t_img *isl);
 
-/* arg_input.c */
+/* in arg_input.c */
 void	invalid_arg(int argc, char **argv);
 void	is_dir(char *dir);
 
-/* map_handling.c */
+/* in map_handling.c */
 void	parse_map(t_map *msl, char *fname);
 void	validate_map(t_map *msl, char **map_cpy);
 
@@ -99,30 +104,40 @@ void	check_walls(t_map *msl);
 void	check_content(t_map *msl);
 void	content_found(t_map *msl, size_t found);
 
-/* walls.c */
+/* in walls.c */
 void	check_upper_wall(t_map *msl);
 void	check_lower_wall(t_map *msl);
 void	check_left_wall(t_map *msl);
 void	check_right_wall(t_map *msl);
 
-/* utils.c */
+/* in utils.c */
 void	remove_nl(t_map *msl);
 size_t	count_lines(int fd);
 char	**copy_map(char **map, size_t row, size_t column);
 void	exit_all(char **map1, char **map2);
 
-/* contents.c */
+/* in contents.c */
 size_t	count_collect(t_map *msl);
 
-/* flood_fill.c */
+/* in flood_fill.c */
 void	flood_fill(char **map, size_t y, size_t x);
 void	check_fill_exit(t_map *msl, char **map_cpy);
 
-/* draw_map.c */
+/* in draw_map.c */
 void	img_init(t_map *msl, mlx_t *mlx, t_img *isl);
 void	texture_loading(mlx_t *mlx, t_img *isl);
 void	resize_image(t_map *msl, t_img *isl);
 void	tile_size(t_map *msl);
-void	map_allocation(t_map *msl, mlx_t *mlx);
+void	map_allocations(t_map *msl, mlx_t *mlx);
+
+/* in map_allocation.c */
+void	map_allocation_0(t_map *msl, mlx_t *mlx);
+void	map_allocation_1(t_map *msl, mlx_t *mlx);
+void	map_allocation_p(t_map *msl, mlx_t *mlx);
+void	map_allocation_c(t_map *msl, mlx_t *mlx);
+void	map_allocation_e(t_map *msl, mlx_t *mlx);
+
+/* in controls.c */
+void	player_controls(t_map *msl, mlx_t *mlx);
 
 #endif
