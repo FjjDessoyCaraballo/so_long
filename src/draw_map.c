@@ -14,16 +14,11 @@
 
 void	img_init(t_map *msl, mlx_t *mlx, t_img *isl)
 {
-
 	texture_loading(mlx, isl);
 	resize_image(msl, isl);
-	// msl->img = mlx_new_image(mlx, WINDOW_W, WINDOW_H);
-	msl->x = 0;
-	msl->y = 0;
 	mlx_image_to_window(mlx, msl->img->img_bg, 0, 0);
-	map_allocation(msl, mlx);
+	map_allocations(msl, mlx);
 }
-
 
 void	texture_loading(mlx_t *mlx, t_img *isl)
 {
@@ -39,15 +34,15 @@ void	texture_loading(mlx_t *mlx, t_img *isl)
 	isl->img_p = mlx_texture_to_image(mlx, isl->txt_p);
 	isl->img_c = mlx_texture_to_image(mlx, isl->txt_c);
 	isl->img_e = mlx_texture_to_image(mlx, isl->txt_e);
-
 }
+
 void	resize_image(t_map *msl, t_img *isl)
 {
-	mlx_resize_image(isl->img_1, msl->tile_w, msl->tile_h);
-	mlx_resize_image(isl->img_0, msl->tile_w, msl->tile_h);
-	mlx_resize_image(isl->img_p, msl->tile_w, msl->tile_h);
-	mlx_resize_image(isl->img_c, msl->tile_w, msl->tile_h);
-	mlx_resize_image(isl->img_e, msl->tile_w, msl->tile_h);
+	mlx_resize_image(isl->img_1, msl->tile_sq, msl->tile_sq);
+	mlx_resize_image(isl->img_0, msl->tile_sq, msl->tile_sq);
+	mlx_resize_image(isl->img_p, msl->tile_sq, msl->tile_sq);
+	mlx_resize_image(isl->img_c, msl->tile_sq, msl->tile_sq);
+	mlx_resize_image(isl->img_e, msl->tile_sq, msl->tile_sq);
 	mlx_resize_image(isl->img_bg, WINDOW_W, WINDOW_H);
 }
 
@@ -62,33 +57,11 @@ void	tile_size(t_map *msl)
 	msl->moves = 0;
 }
 
-void	map_allocation(t_map *msl, mlx_t *mlx)
+void	map_allocations(t_map *msl, mlx_t *mlx)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (msl->map[i])
-	{
-		j = 0;
-		msl->x = 0;
-		while (msl->map[i][j])
-		{
-			if (msl->map[i][j] == '0')
-				mlx_image_to_window(mlx, msl->img->img_0, msl->x * msl->tile_sq, msl->y * msl->tile_sq);
-			else if (msl->map[i][j] == 'P')
-				mlx_image_to_window(mlx, msl->img->img_p, msl->x * msl->tile_sq, msl->y * msl->tile_sq);
-			else if (msl->map[i][j] == 'E')
-				mlx_image_to_window(mlx, msl->img->img_e, msl->x * msl->tile_sq, msl->y * msl->tile_sq);
-			else if (msl->map[i][j] == 'C')
-				mlx_image_to_window(mlx, msl->img->img_c, msl->x * msl->tile_sq, msl->y * msl->tile_sq);
-			else
-				mlx_image_to_window(mlx, msl->img->img_1, msl->x * msl->tile_sq, msl->y * msl->tile_sq);
-			j++;
-			msl->x++;
-		}
-		i++;
-		msl->y++;
-	}
-} 
+	map_allocation_0(msl, mlx);
+	map_allocation_1(msl, mlx);
+	map_allocation_c(msl, mlx);
+	map_allocation_e(msl, mlx);
+	map_allocation_p(msl, mlx);
+}
