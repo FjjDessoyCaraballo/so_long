@@ -20,10 +20,13 @@ In case you have no idea what those letters mean:
 11. create a post-flood fill check for exit - DONE
 12. create copy of map - DONE
 13. free the copy - DONE
-14. choose sprites 
-15. create a function that opens a window
-16. shove sprites inside the window
-17. check for only .ber files
+14. choose sprites - DONE
+15. create a function that opens a window - DONE
+16. shove sprites inside the window - DONE
+17. check for only .ber files - DONE
+18. hook key commands - ONGOING
+19. check for collision
+20. check for exit accessibility after objectives are complete 
 
 OBS: VS code terminal fucks up output, dont trust it always.
 
