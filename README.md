@@ -51,7 +51,9 @@ documenting the MLX (linked in additional resources).
 
 ## JOURNAL
 
-```01.03.2024 
+```
+01.03.2024
+
 1. Map is coming back in irregular size (not rectangular). 
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
@@ -59,7 +61,8 @@ Probably because ft_strlen is not counting the null
 at the end.)
 ```
 ```
-04.03.2024 
+04.03.2024
+
 1. Modded ft_strlen to count until new line. Now the 
 struct has the true value of the width for any possible 
 scenario. Modded strlen is in utils.c.
@@ -80,6 +83,7 @@ of P, E, and C.
 ```
 ```
 05.03.2024
+
 1. Added check_components to check existence of necessary
 elements in the game - i.e. one player and exit, and at least
 one collectible.
@@ -92,6 +96,7 @@ collectible.
 ```
 ```
 06.03.2024
+
 1. Added variables size_t x and y_ppos (player position) to
 precisely know where the player will be. This information
 allows us to have a starting point for the flood_fill later.
@@ -110,6 +115,7 @@ to reach.
 ```
 ```
 07.03.2024
+
 1. Added a function check_fill_exit() to check if there is
 still an exit after flooding the map.
 2. Added function copy_map() to make a backup copy of the map
@@ -125,12 +131,14 @@ null terminator in the first malloc().
 ```
 ```
 09.03.2024
+
 1. Added is_dir() to arg_input.c to check for when the given 
 file is a directory. Together with this, a specific error message 
 is given to this specific error.
 ```
 ```
 11.03.2024
+
 1. MLX42 is working with the Makefile.
 2. Inserted mlx functions mlx_init() to open window, and mlx_loop()
 to keep window open.
@@ -140,6 +148,7 @@ window.
 ```
 ```
 12.03.2024
+
 1. Texture_loading() has been reassigned to img_init() in the same
 file. There is a need to initialize and determine some variables
 before loading sprites/images.
@@ -152,6 +161,7 @@ it as the last possible thing after all the code.
 ```
 ```
 13.03.2024
+
 1. Sprites need to have a bit of a white edge to look more aesthetic.
 Therefore new sprites were procured.
 2. New sprites with white edges have been selected. Sprites resizing
