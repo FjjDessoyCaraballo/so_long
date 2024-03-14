@@ -56,8 +56,9 @@ documenting the MLX (linked in additional resources).
 The last row is coming back with -1 element different 
 from the other rows (e.g. 6, 6, 5 for minimap.ber. 
 Probably because ft_strlen is not counting the null 
-at the end.)```
-
+at the end.)
+```
+```
 04.03.2024 
 1. Modded ft_strlen to count until new line. Now the 
 struct has the true value of the width for any possible 
@@ -76,7 +77,8 @@ map is not contained by 1's, the map is rejected with its
 own error message.
 END OF DAY: next step is to check for at least one occurrence
 of P, E, and C.
-
+```
+```
 05.03.2024
 1. Added check_components to check existence of necessary
 elements in the game - i.e. one player and exit, and at least
@@ -87,7 +89,8 @@ existence of ONE occurrence of exit and player.
 number of collectibles into my msl struct for further use.
 The function only allow the map to have at least ONE
 collectible. 
-
+```
+```
 06.03.2024
 1. Added variables size_t x and y_ppos (player position) to
 precisely know where the player will be. This information
@@ -104,7 +107,8 @@ does NOT exist after the flood fill. Because if it is
 still there, it means that the flood fill has not covered
 the area where the exit is, therefore making it impossible
 to reach.
-
+```
+```
 07.03.2024
 1. Added a function check_fill_exit() to check if there is
 still an exit after flooding the map.
@@ -118,12 +122,14 @@ behavior was corrected by using ft_strdup() and now we can
 flood the duplicate without affecting the original map.
 4. Copy_map() was leaking due to a lack of space for the
 null terminator in the first malloc().
-
+```
+```
 09.03.2024
 1. Added is_dir() to arg_input.c to check for when the given 
 file is a directory. Together with this, a specific error message 
 is given to this specific error.
-
+```
+```
 11.03.2024
 1. MLX42 is working with the Makefile.
 2. Inserted mlx functions mlx_init() to open window, and mlx_loop()
@@ -131,7 +137,8 @@ to keep window open.
 3. Added texture_loading function to so_long.c, which leads to 
 draw_map.c where textures will be turned into images unto the
 window.
-
+```
+```
 12.03.2024
 1. Texture_loading() has been reassigned to img_init() in the same
 file. There is a need to initialize and determine some variables
@@ -142,7 +149,8 @@ resize images accordingly.
 the window to the proper background size.
 4. BE CAREFUL: mlx_close_window() can unnecessarily free stuff. Use
 it as the last possible thing after all the code.
-
+```
+```
 13.03.2024
 1. Sprites need to have a bit of a white edge to look more aesthetic.
 Therefore new sprites were procured.
@@ -166,5 +174,5 @@ struct from there.
 8. First key hook was added: esc. Right now the game runs and exits
 without any problems. To be more specific, the exiting is due to the
 pressing of the key ESC.
-
+```
 
