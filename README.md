@@ -24,9 +24,12 @@ In case you have no idea what those letters mean:
 15. create a function that opens a window - DONE
 16. shove sprites inside the window - DONE
 17. check for only .ber files - DONE
-18. hook key commands - ONGOING
-19. check for collision
-20. check for exit accessibility after objectives are complete 
+18. hook key commands - DONE
+19. check for collision - DONE
+20. player collects collectibles - ONGOING 
+21. player access exit after collecting - 
+22. clean exit - 
+23. error handling - 
 
 OBS: VS code terminal fucks up output, dont trust it always.
 
