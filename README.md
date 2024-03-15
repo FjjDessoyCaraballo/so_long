@@ -185,4 +185,23 @@ struct from there.
 without any problems. To be more specific, the exiting is due to the
 pressing of the key ESC.
 ```
+```
+14.03.2024
+
+1. Added file controls_logic.c that contins all movement hooks of
+the player. The logic right now is fairly simple: movement will not
+be impeded until player hits a one (1). Move up decreases y_ppos 
+(t_map) by one; move down increases y_ppos by one; move left
+decreases x_ppos by one; and move right increases x_ppos by one.
+2. By the end of each movement function there is a line pointing
+to the img variable, which points to img_p, which points to
+instances, which points to x and y (depending on direction). This
+line is required to move the image of the player without necessarily
+rendering the map over again and again.
+3. Variable x_epos and y_epos were added to the t_map struct to
+keep the exit position.
+4. Added variable p_move (player move) in each movement funciton to
+keep track of player movement that should be later be displayed
+either in terminal or window.
+```
 
