@@ -31,7 +31,7 @@ In case you have no idea what those letters mean:
 22. clean exit - 
 23. error handling - 
 
-OBS: VS code terminal fucks up output, dont trust it always.
+OBS: VS code terminal messes the output, don't trust it
 
 ## MLX
 
