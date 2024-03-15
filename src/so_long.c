@@ -20,6 +20,7 @@ void	so_long(t_map *msl, char **argv, mlx_t *mlx, t_img *isl)
 			"so_long", true);
 	msl->mlx = mlx;
 	img_init(msl, mlx, isl);
+	msl->p_move = 0;
 	if (!mlx)
 	{
 		free_array(msl->map);

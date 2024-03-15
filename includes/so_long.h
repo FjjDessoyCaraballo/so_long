@@ -71,9 +71,12 @@ typedef struct s_map
 	size_t	collect;
 	size_t	x_ppos;
 	size_t	y_ppos;
+	size_t	x_epos;
+	size_t	y_epos;
 	size_t	tile_w;
 	size_t	tile_h;
 	size_t	tile_sq;
+	size_t	p_move;
 	size_t	moves;
 	size_t	x;
 	size_t	y;
@@ -117,7 +120,7 @@ char	**copy_map(char **map, size_t row, size_t column);
 void	exit_all(char **map1, char **map2);
 
 /* in contents.c */
-size_t	count_collect(t_map *msl);
+void	count_collect(t_map *msl);
 
 /* in flood_fill.c */
 void	flood_fill(char **map, size_t y, size_t x);
@@ -139,5 +142,11 @@ void	map_allocation_e(t_map *msl, mlx_t *mlx);
 
 /* in controls.c */
 void	player_controls(t_map *msl, mlx_t *mlx);
+
+/* in controls_logic.c */
+void	move_up(t_map *msl);
+void	move_down(t_map *msl);
+void	move_right(t_map *msl);
+void	move_left(t_map *msl);
 
 #endif

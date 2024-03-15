@@ -33,7 +33,6 @@ void	parse_map(t_map *msl, char *fname)
 		msl->map[i++] = get_next_line(fd);
 	remove_nl(msl);
 	msl->width = ft_strlen(msl->map[0]);
-	msl->collect = count_collect(msl);
 	map_cpy = copy_map(msl->map, msl->height, msl->width);
 	validate_map(msl, map_cpy);
 	free_array(map_cpy);

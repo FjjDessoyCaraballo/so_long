@@ -12,29 +12,29 @@
 
 #include "so_long.h"
 
-size_t	count_collect(t_map	*msl)
+void	count_collect(t_map	*msl)
 {
-	size_t	i;
-	size_t	j;
-	size_t	found_c;
-
-	i = 0;
-	found_c = 0;
-	while (i < msl->height)
+	msl->i = 0;
+	msl->collect = 0;
+	while (msl->i < msl->height)
 	{
-		j = 0;
-		while (msl->map[i][j])
+		msl->j = 0;
+		while (msl->map[msl->i][msl->j])
 		{
-			if (msl->map[i][j] == 'C')
-				found_c += 1;
-			j++;
+			if (msl->map[msl->i][msl->j] == 'C')
+				msl->collect += 1;
+			else if (msl->map[msl->i][msl->j] == 'E')
+			{
+				msl->y_epos = msl->i;
+				msl->x_epos = msl->j;
+			}
+			msl->j++;
 		}
-		i++;
+		msl->i++;
 	}
-	if (found_c <= 0)
+	if (msl->collect <= 0)
 	{
 		ft_putstr_fd(ERR_CHAR, 2);
 		exit(0);
 	}
-	return (found_c);
 }
