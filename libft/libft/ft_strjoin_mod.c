@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdessoy- <fdessoy-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 11:19:41 by fdessoy-          #+#    #+#             */
-/*   Updated: 2023/10/30 15:11:38 by fdessoy-         ###   ########.fr       */
+/*   Created: 2023/11/01 16:14:55 by fdessoy-          #+#    #+#             */
+/*   Updated: 2023/11/07 12:22:36 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strjoin_mod(const char *s1, const char *s2)
 {
-	int	i;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	while (s[i] != '\0')
+	if (s1 && s2)
 	{
-		i++;
+		str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+		i = 0;
+		j = 0;
+		while (s1[i])
+			str[j++] = s1[i++];
+		i = 0;
+		while (s2[i])
+			str[j++] = s2[i++];
+		str[j] = '\0';
+		return (str);
 	}
-	return (i);
+	free((void *)s1);
+	if (!s1)
+		return (ft_strdup(s2));
+	return (NULL);
 }

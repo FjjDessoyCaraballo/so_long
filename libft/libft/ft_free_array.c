@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdessoy- <fdessoy-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 11:19:41 by fdessoy-          #+#    #+#             */
-/*   Updated: 2023/10/30 15:11:38 by fdessoy-         ###   ########.fr       */
+/*   Created: 2024/02/29 12:34:41 by fdessoy-          #+#    #+#             */
+/*   Updated: 2024/02/29 12:34:43 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (array[i])
 	{
+		free(array[i]);
 		i++;
 	}
-	return (i);
+	free(array);
 }
