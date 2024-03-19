@@ -36,7 +36,7 @@ void	check_fill_exit(t_map *msl, char **map_cpy)
 		j = 0;
 		while (map_cpy[i][j] != '\0')
 		{
-			if (map_cpy[i][j] == 'E')
+			if (map_cpy[i][j] == 'E' || map_cpy[i][j] == 'C')
 				found += 1;
 			j++;
 		}

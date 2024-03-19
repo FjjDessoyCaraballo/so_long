@@ -50,13 +50,13 @@ size_t	count_lines(int fd)
 	return (i);
 }
 
-char	**copy_map(char **map, size_t row, size_t column)
+char	**copy_map(char **map, size_t row)
 {
 	char	**map_cpy;
 	size_t	i;
 
 	i = 0;
-	map_cpy = malloc(sizeof(char *) * row + 1);
+	map_cpy = malloc(sizeof(char *) * (row + 1));
 	if (!map_cpy)
 		exit_all(map, map_cpy);
 	while (i < row)
@@ -66,12 +66,7 @@ char	**copy_map(char **map, size_t row, size_t column)
 			exit_all(map, map_cpy);
 		i++;
 	}
-	i = 0;
-	while (i < row)
-	{
-		map_cpy[i][column] = '\0';
-		i++;
-	}
+	map_cpy[i] = 0;
 	return (map_cpy);
 }
 

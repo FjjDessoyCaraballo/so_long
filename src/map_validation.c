@@ -67,9 +67,7 @@ void	check_content(t_map *msl) // need to pass a pointer
 {
 	size_t	i;
 	size_t	j;
-	size_t	found;
 
-	found = 0;
 	i = 0;
 	while (i < msl->height)
 	{
@@ -80,20 +78,20 @@ void	check_content(t_map *msl) // need to pass a pointer
 			{
 				msl->y_ppos = i;
 				msl->x_ppos = j;
-				found += 1;
+				msl->p_count += 1;
 			}
 			else if (msl->map[i][j] == 'E')
-				found += 1;
+				msl->e_count += 1;
 			j++;
 		}
 		i++;
 	}
-	content_found(msl, found);
+	content_found(msl);
 }
 
-void	content_found(t_map *msl, size_t found)
+void	content_found(t_map *msl)
 {
-	if (found != 2)
+	if (msl->p_count != 1 || msl->e_count != 1)
 	{
 		ft_putstr_fd(ERR_CHAR, 2);
 		free_array(msl->map);

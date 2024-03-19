@@ -19,7 +19,7 @@ void	invalid_arg(int argc, char **argv)
 		ft_putstr_fd(ERR_ARG, 2);
 		exit(1);
 	}
-	if (!ft_strnstr(argv[1], ".ber", 50))
+	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
 		ft_putstr_fd(ERR_FILE, 2);
 		exit(1);

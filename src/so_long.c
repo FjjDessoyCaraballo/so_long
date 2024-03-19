@@ -18,23 +18,15 @@ void	so_long(t_map *msl, char **argv, mlx_t *mlx, t_img *isl)
 	tile_size(msl);
 	mlx = mlx_init(msl->width * msl->tile_sq, msl->height * msl->tile_sq,
 			"so_long", true);
-	msl->mlx = mlx;
-	img_init(msl, mlx, isl);
-	msl->p_move = 0;
 	if (!mlx)
 	{
 		free_array(msl->map);
 		exit(1);
 	}
+	msl->mlx = mlx;
+	img_init(msl, mlx, isl);
+	msl->p_move = 1;
 	player_controls(msl, mlx);
 	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }
-
-	// mlx_close_window(mlx);
-	/*
-	png to texture
-	texture to image
-	image to window
-	
-	dont forget to credit dinofive
-	@ https://mby.itch.io/dinofive */

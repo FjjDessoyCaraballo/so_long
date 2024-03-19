@@ -19,7 +19,7 @@ INCFLAGS = -Iincludes -Ilibft/includes
 # Main project files
 SRC_FILES = so_long.c arg_input.c map_handling.c main.c map_validation.c\
 utils.c walls.c collectibles.c flood_fill.c draw_map.c map_allocation.c\
-controls.c controls_logic.c
+controls.c controls_logic.c end_game.c
 
 #flood_fill.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
@@ -42,7 +42,7 @@ $(EXECUTABLE): libmlx $(OBJ_FILES) $(LIBFT)
 	@echo "\033[1;33m[✔] Compiling so_long...\033[0m"
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCFLAGS) $(MLX_HEADER) $(LIBFT_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCFLAGS) $(MLX_HEADER) $(LIBFT_INC) -g -c $< -o $@
 
 $(LIBFT): $(LIBFT_MAKEFILE)
 	$(MAKE) -C $(LIBFT_DIR)

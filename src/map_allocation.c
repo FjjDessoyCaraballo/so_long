@@ -25,8 +25,9 @@ void	map_allocation_0(t_map *msl, mlx_t *mlx)
 		while (msl->map[msl->i][msl->j])
 		{
 			if (msl->map[msl->i][msl->j] == '0')
-				mlx_image_to_window(mlx, msl->img->img_0, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
+				if (mlx_image_to_window(mlx, msl->img->img_0, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
 			msl->j++;
 			msl->x++;
 		}
@@ -48,8 +49,9 @@ void	map_allocation_1(t_map *msl, mlx_t *mlx)
 		while (msl->map[msl->i][msl->j])
 		{
 			if (msl->map[msl->i][msl->j] == '1')
-				mlx_image_to_window(mlx, msl->img->img_1, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
+				if (mlx_image_to_window(mlx, msl->img->img_1, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
 			msl->j++;
 			msl->x++;
 		}
@@ -72,10 +74,12 @@ void	map_allocation_p(t_map *msl, mlx_t *mlx)
 		{
 			if (msl->map[msl->i][msl->j] == 'P')
 			{
-				mlx_image_to_window(mlx, msl->img->img_0, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
-				mlx_image_to_window(mlx, msl->img->img_p, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
+				if (mlx_image_to_window(mlx, msl->img->img_0, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
+				if (mlx_image_to_window(mlx, msl->img->img_p, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
 			}
 			msl->j++;
 			msl->x++;
@@ -99,10 +103,12 @@ void	map_allocation_c(t_map *msl, mlx_t *mlx)
 		{
 			if (msl->map[msl->i][msl->j] == 'C')
 			{
-				mlx_image_to_window(mlx, msl->img->img_0, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
-				mlx_image_to_window(mlx, msl->img->img_c, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
+				if (mlx_image_to_window(mlx, msl->img->img_0, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
+				if (mlx_image_to_window(mlx, msl->img->img_c, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
 			}
 			msl->j++;
 			msl->x++;
@@ -126,10 +132,12 @@ void	map_allocation_e(t_map *msl, mlx_t *mlx)
 		{
 			if (msl->map[msl->i][msl->j] == 'E')
 			{
-				mlx_image_to_window(mlx, msl->img->img_0, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
-				mlx_image_to_window(mlx, msl->img->img_e, msl->x * msl->tile_sq,
-					msl->y * msl->tile_sq);
+				if (mlx_image_to_window(mlx, msl->img->img_0, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
+				if (mlx_image_to_window(mlx, msl->img->img_e, msl->x
+						* msl->tile_sq, msl->y * msl->tile_sq) < 0)
+					end_game(msl, 1);
 			}
 			msl->j++;
 			msl->x++;

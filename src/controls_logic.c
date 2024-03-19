@@ -12,52 +12,90 @@
 
 #include "so_long.h"
 
-void	move_up(t_map *msl)
+void	move_down(t_map *msl)
 {
-	if (msl->map[msl->y_ppos - 1][msl->x_ppos] != '1')
+	if (msl->map[msl->y_ppos + 1][msl->x_ppos] != '1')
 	{
-		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-		msl->map[msl->y_ppos - 1][msl->x_ppos] = 'P';
-		msl->y_ppos -= 1;
-		msl->p_move += 1;
-		msl->img->img_p->instances->y -= msl->tile_sq;
+		msl->y_ppos += 1;
+		ft_printf("\e[0;32mmoves:%i\n", msl->p_move++);
+		msl->img->img_p->instances->y += msl->tile_sq;
 		if (msl->map[msl->y_ppos][msl->x_ppos] == 'C')
 		{
 			msl->map[msl->y_ppos][msl->x_ppos] = '0';
-			msl->map[msl->y_ppos - 1][msl->x_ppos] = 'P';
-			msl->y_ppos -= 1;
-			msl->p_move += 1;
-			mlx_delete_image(msl->mlx, msl->img->img_c);
-			mlx_image_to_window(msl->mlx, msl->img->img_0, msl->x * msl->tile_sq,
-						(msl->y - 1) * msl->tile_sq);
-			ft_printf("find C\n");
-			msl->img->img_p->instances->y -= msl->tile_sq;
+			if (mlx_image_to_window(msl->mlx, msl->img->img_0, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			mlx_delete_image(msl->mlx, msl->img->img_p);
+			msl->img->img_p = mlx_texture_to_image(msl->mlx, msl->img->txt_p);
+			if (!msl->img->img_p)
+				end_game(msl, 1);
+			if (!mlx_resize_image(msl->img->img_p, msl->tile_sq, msl->tile_sq))
+				end_game(msl, 1);
+			if (mlx_image_to_window(msl->mlx, msl->img->img_p, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			msl->collect--;
 		}
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'E' && msl->collect == 0)
+			end_game(msl, 0);
 	}
-
 }
 
 void	move_left(t_map *msl)
 {
 	if (msl->map[msl->y_ppos][msl->x_ppos - 1] != '1')
 	{
-		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-		msl->map[msl->y_ppos][msl->x_ppos - 1] = 'P';
 		msl->x_ppos -= 1;
-		msl->p_move += 1;
+		ft_printf("\e[0;35mmoves:%i\n", msl->p_move++);
 		msl->img->img_p->instances->x -= msl->tile_sq;
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'C')
+		{
+			msl->map[msl->y_ppos][msl->x_ppos] = '0';
+			if (mlx_image_to_window(msl->mlx, msl->img->img_0, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			mlx_delete_image(msl->mlx, msl->img->img_p);
+			msl->img->img_p = mlx_texture_to_image(msl->mlx, msl->img->txt_p);
+			if (!msl->img->img_p)
+				end_game(msl, 1);
+			if (!mlx_resize_image(msl->img->img_p, msl->tile_sq, msl->tile_sq))
+				end_game(msl, 1);
+			if (mlx_image_to_window(msl->mlx, msl->img->img_p, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			msl->collect--;
+		}
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'E' && msl->collect == 0)
+			end_game(msl, 0);
 	}
 }
 
-void	move_down(t_map *msl)
+void	move_up(t_map *msl)
 {
-	if (msl->map[msl->y_ppos + 1][msl->x_ppos] != '1')
+	if (msl->map[msl->y_ppos - 1][msl->x_ppos] != '1')
 	{
-		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-		msl->map[msl->y_ppos + 1][msl->x_ppos] = 'P';
-		msl->y_ppos += 1;
-		msl->p_move += 1;
-		msl->img->img_p->instances->y += msl->tile_sq;
+		msl->y_ppos -= 1;
+		ft_printf("\e[0;33mmoves:%i\n", msl->p_move++);
+		msl->img->img_p->instances->y -= msl->tile_sq;
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'C')
+		{
+			msl->map[msl->y_ppos][msl->x_ppos] = '0';
+			if (mlx_image_to_window(msl->mlx, msl->img->img_0, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			mlx_delete_image(msl->mlx, msl->img->img_p);
+			msl->img->img_p = mlx_texture_to_image(msl->mlx, msl->img->txt_p);
+			if (!msl->img->img_p)
+				end_game(msl, 1);
+			if (!mlx_resize_image(msl->img->img_p, msl->tile_sq, msl->tile_sq))
+				end_game(msl, 1);
+			if (mlx_image_to_window(msl->mlx, msl->img->img_p, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			msl->collect--;
+		}
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'E' && msl->collect == 0)
+			end_game(msl, 0);
 	}
 }
 
@@ -65,36 +103,27 @@ void	move_right(t_map *msl)
 {
 	if (msl->map[msl->y_ppos][msl->x_ppos + 1] != '1')
 	{
-		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-		msl->map[msl->y_ppos][msl->x_ppos + 1] = 'P';
 		msl->x_ppos += 1;
-		msl->p_move += 1;
+		ft_printf("\e[0;30mmoves:%i\n", msl->p_move++);
 		msl->img->img_p->instances->x += msl->tile_sq;
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'C')
+		{
+			msl->map[msl->y_ppos][msl->x_ppos] = '0';
+			if (mlx_image_to_window(msl->mlx, msl->img->img_0, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			mlx_delete_image(msl->mlx, msl->img->img_p);
+			msl->img->img_p = mlx_texture_to_image(msl->mlx, msl->img->txt_p);
+			if (!msl->img->img_p)
+				end_game(msl, 1);
+			if (!mlx_resize_image(msl->img->img_p, msl->tile_sq, msl->tile_sq))
+				end_game(msl, 1);
+			if (mlx_image_to_window(msl->mlx, msl->img->img_p, msl->x_ppos
+					* msl->tile_sq, msl->y_ppos * msl->tile_sq) < 0)
+				end_game(msl, 1);
+			msl->collect--;
+		}
+		if (msl->map[msl->y_ppos][msl->x_ppos] == 'E' && msl->collect == 0)
+			end_game(msl, 0);
 	}
 }
-
-// void	move_left(t_map *msl)
-// {
-// 	if (msl->map[msl->y_ppos ][msl->x_ppos - 1] == '0')
-// 	{
-// 		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-// 		msl->map[msl->y_ppos][msl->x_ppos - 1] = 'P';
-// 		msl->x_ppos -= 1;
-// 		msl->img->img_p->instances->x -= msl->tile_sq;
-// 	}
-// 	else if (msl->map[msl->y_ppos][msl->x_ppos - 1] == 'C')
-// 	{
-// 		msl->map[msl->y_ppos][msl->x_ppos] = '0';
-// 		msl->map[msl->y_ppos][msl->x_ppos - 1] = 'P';
-// 		msl->x_ppos -= 1;
-// 		msl->img->img_p->instances->x -= msl->tile_sq;
-// 		msl->collect--;
-// 		if (msl->collect == 0)
-// 			msl->map[msl->y_epos][msl->x_epos] = 'E';
-// 	}
-// 	else if (msl->map[msl->y_ppos][msl->x_ppos - 1] == 'E')
-// 	{
-// 		msl->x_ppos -= 1;
-// 		msl->img->img_p->instances->x -= msl->tile_sq;
-// 	}
-// }

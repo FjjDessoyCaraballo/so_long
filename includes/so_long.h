@@ -33,17 +33,33 @@
 
 /* error macros */
 # define ERR_ARG "Error\nInvalid number of arguments\n"
-# define ERR_DIR "Error\n"
+# define ERR_DIR "Error\nDirectory cannot be maps, try again\n"
 # define ERR_FILE "Error\nNo valid .ber file inserted\n"
 # define MAP_FD "Error\nFailed to read the map\n"
 # define ERR_MAP "Error\nInvalid map size\n"
 # define ERR_CHAR "Error\nInvalid map content\n"
-# define ERR_WALL "Erro\nMap must be closed by walls\n"
+# define ERR_WALL "Error\nMap must be closed by walls\n"
 # define ERR_PATH "Error\nPlayer does not have a valid path\n"
+# define ERR_MLX "Error\nMLX failure\n"
+# define EXIT "Goodbye, no haiku for you\n"
+# define WIN1 "\e[0;31mCongrats, here's a haiku for you:\n"
+# define WIN2 "Socks in mismatched pairs,\n"
+# define WIN3 "Laundry mountain never ends,\n"
+# define WIN4 "Socks play hide and seek.\n"
 
 /* window size */
-# define WINDOW_W 1366
-# define WINDOW_H 768
+# define WINDOW_W 1920
+# define WINDOW_H 1080
+
+/* colours */
+# define BLK "\e[0;30m"
+# define RED "\e[0;31m"
+# define GRN "\e[0;32m"
+# define YEL "\e[0;33m"
+# define BLU "\e[0;34m"
+# define MAG "\e[0;35m"
+# define CYN "\e[0;36m"
+# define WHT "\e[0;37m"
 
 /* textures and images struct */
 typedef struct s_img
@@ -54,6 +70,7 @@ typedef struct s_img
 	mlx_texture_t	*txt_p;
 	mlx_texture_t	*txt_e;
 	mlx_texture_t	*txt_bg;
+	mlx_image_t		*counter;
 	mlx_image_t		*img_0;
 	mlx_image_t		*img_1;
 	mlx_image_t		*img_c;
@@ -77,6 +94,8 @@ typedef struct s_map
 	size_t	tile_h;
 	size_t	tile_sq;
 	size_t	p_move;
+	size_t	p_count;
+	size_t	e_count;
 	size_t	moves;
 	size_t	x;
 	size_t	y;
@@ -105,7 +124,7 @@ void	check_rectangle(t_map *msl);
 void	check_character(t_map *msl);
 void	check_walls(t_map *msl);
 void	check_content(t_map *msl);
-void	content_found(t_map *msl, size_t found);
+void	content_found(t_map *msl);
 
 /* in walls.c */
 void	check_upper_wall(t_map *msl);
@@ -116,7 +135,7 @@ void	check_right_wall(t_map *msl);
 /* in utils.c */
 void	remove_nl(t_map *msl);
 size_t	count_lines(int fd);
-char	**copy_map(char **map, size_t row, size_t column);
+char	**copy_map(char **map, size_t row);
 void	exit_all(char **map1, char **map2);
 
 /* in contents.c */
@@ -128,7 +147,7 @@ void	check_fill_exit(t_map *msl, char **map_cpy);
 
 /* in draw_map.c */
 void	img_init(t_map *msl, mlx_t *mlx, t_img *isl);
-void	texture_loading(mlx_t *mlx, t_img *isl);
+void	texture_loading(mlx_t *mlx, t_map *msl, t_img *isl);
 void	resize_image(t_map *msl, t_img *isl);
 void	tile_size(t_map *msl);
 void	map_allocations(t_map *msl, mlx_t *mlx);
@@ -148,5 +167,9 @@ void	move_up(t_map *msl);
 void	move_down(t_map *msl);
 void	move_right(t_map *msl);
 void	move_left(t_map *msl);
+
+/* in end_game.c */
+void	end_game(t_map *msl, int num);
+void	free_game(t_map *msl);
 
 #endif
