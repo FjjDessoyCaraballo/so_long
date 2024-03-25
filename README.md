@@ -1,4 +1,16 @@
 # FELIPE'S INCREDIBLE GAME OF MISCHIEF & STRAVAGANZA
+<img width="1896" alt="Screen Shot 2024-03-25 at 12 28 03 PM" src="https://github.com/FjjDessoyCaraballo/so_long/assets/63795029/5abfa9c7-edcb-49d7-aada-9a5a639a2b9b">
+
+This the game, yes.
+
+This is the map:
+
+1111111111111
+1C00000000001
+1110010000001
+10P011E000001
+1111111111111
+
 ## ACRONYMS
 
 In case you have no idea what those letters mean:
