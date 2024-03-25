@@ -11,6 +11,18 @@ This is the map:
 10P011E000001
 1111111111111
 ```
+
+## HOW TO EXECUTE
+
+1. Clone the repository ```git clone https://github.com/FjjDessoyCaraballo/so_long [NAME OF THE DIRECTORY YOU WANT];
+2. Make files (for this part you may want to be sure that the glfw folder is up to date and path is correct to it);
+3. Execute the game with the following prompt ```./so_long maps/valid1.ber``` (the valid1.ber is one of the maps available)
+4. Use WASD for movement;
+5. For a win, you need to get all collectibles;
+6. For premature exit, press ESC;
+7. Head to E for exit and win the game.
+8. Collect your awesome reward haiku.
+
 ## ACRONYMS
 
 In case you have no idea what those letters mean:
