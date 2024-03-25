@@ -1,3 +1,4 @@
+# FELIPE'S INCREDIBLE GAME OF MISCHIEF & STRAVAGANZA
 ## ACRONYMS
 
 In case you have no idea what those letters mean:
@@ -207,4 +208,37 @@ keep the exit position.
 keep track of player movement that should be later be displayed
 either in terminal or window.
 ```
-
+```
+15.03.2024
+1. Added exit for the player. As soon as the player collects
+everything, they can exit.
+2. Even though the player logically collects the collectible,
+the image is not refreshed. This means that the player hovers
+over the collectible, but the image stays there afterwards.
+```
+```
+18.03.2024
+1. Fixed the issue with the image of the collectibles. The player
+image is being destroyed and recreated as they collect any of the
+collectibles, leaving a zero (0) behind.
+2. Right now the game is leaking memory, still couldn't figure out
+where the leaks are coming from, since the map is being freed at the
+end of the game.
+3. Added error checks for texture_loading().
+4. Added end_game.c  to take care of failed and successful endgame.
+1 means failed endgame and 0 is successful endgame. Both are freeing
+the struct map, closing the window, terminating mlx, and exiting.
+```
+```
+19.03.2024
+1. Found a solution to the persistent problem of abortion in random
+executions. In the copy_map() (in utils.c) the null termination was
+a pointer to null, while it needed to be null. The case is that the
+pointer would not always point to null, but sometimes it would point
+to garbage values and it would fail for that.
+2. Tested the game with ridiculous sizes of maps and resolutions, it
+executes in whatever measures.
+3. Protected most of the renderization part of the MLX functions to
+avoid crashes without proper exit status. Controls and their logics
+must also fall into the same pattern.
+```
