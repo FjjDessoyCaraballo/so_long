@@ -17,6 +17,10 @@ In case you have no idea what those letters mean:
 1. msl - map so_long;
 2. mlx - MiniLibraryX;
 3. isl - images so_long;
+4. x_ppos - x player position;
+5. y_ppos - y player position;
+6. x_epos - x exit position;
+7. y_epos - y exit position;
 
 ## CHECK LIST
 
