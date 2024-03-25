@@ -14,7 +14,7 @@ This is the map:
 
 ## HOW TO EXECUTE
 
-1. Clone the repository ```git clone https://github.com/FjjDessoyCaraballo/so_long [NAME OF THE DIRECTORY YOU WANT];
+1. Clone the repository ```git clone https://github.com/FjjDessoyCaraballo/so_long [NAME OF THE DIRECTORY YOU WANT]```;
 2. Make files (for this part you may want to be sure that the glfw folder is up to date and path is correct to it);
 3. Execute the game with the following prompt ```./so_long maps/valid1.ber``` (the valid1.ber is one of the maps available)
 4. Use WASD for movement;
