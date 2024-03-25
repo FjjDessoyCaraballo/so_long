@@ -27,10 +27,10 @@ In case you have no idea what those letters mean:
 17. check for only .ber files - DONE
 18. hook key commands - DONE
 19. check for collision - DONE
-20. player collects collectibles - ONGOING 
-21. player access exit after collecting - 
-22. clean exit - 
-23. error handling - 
+20. player collects collectibles - DONE
+21. player access exit after collecting - DONE
+22. clean exit - DONE
+23. error handling - DONE?
 
 OBS: VS code terminal messes the output, don't trust it
 
